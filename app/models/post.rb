@@ -15,6 +15,8 @@ class Post < ActiveRecord::Base
 
   private
   def has_at_least_one_sub
-    !subs.empty?
+    return unless subs.empty?
+    errors[:post] << "must have at least one sub"
   end
+
 end

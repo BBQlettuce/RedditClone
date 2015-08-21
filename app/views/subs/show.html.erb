@@ -1,10 +1,16 @@
 <h1><%= @sub.title %></h1>
 <p><%= @sub.description %></p>
 
+<ul>
+  <% @sub.posts.each do |post| %>
+  <li>
+    <a href="<%= post_url(post) %>"> <%= post.title %> </a>
+  </li>
+  <% end %>
+</ul>
+
 <br>
 <%= link_to "Edit", edit_sub_url(@sub) if current_user == @sub.moderator %>
 <br>
-
-
 
 <%= link_to "Back to all subs", subs_url %>

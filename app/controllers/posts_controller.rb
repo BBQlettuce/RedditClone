@@ -7,8 +7,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    @post.sub_ids = sub_ids
+    @post = current_user.posts.build(post_params.merge(sub_ids: sub_ids))
+    # @post.sub_ids = sub_ids
     if @post.save
       redirect_to post_url(@post)
     else
@@ -18,8 +18,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @associated_subs = @post.subs
-
   end
 
   def update
@@ -53,8 +51,7 @@ class PostsController < ApplicationController
   end
 
   def sub_ids
-    # post_params[:sub_ids].keys
-    params[:post][:sub_ids].keys
+    params[:post][:sub_ids] ? params[:post][:sub_ids].keys : []
   end
 
   def require_owner

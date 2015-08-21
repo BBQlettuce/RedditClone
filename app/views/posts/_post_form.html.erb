@@ -7,7 +7,7 @@
 
   <% Sub.all.each do |sub| %>
     <input type="checkbox" name="post[sub_ids][<%= sub.id %>]"
-    <%= "checked" if @associated_subs.include?(sub) %>
+    <%= "checked" if @post.subs.include?(sub) %>
     ><%= sub.title %><br>
   <% end %>
 
