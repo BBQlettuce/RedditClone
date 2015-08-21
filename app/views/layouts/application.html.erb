@@ -8,6 +8,10 @@
 </head>
 <body>
 
+<%= button_to "Logout", session_url, method: :delete if logged_in? %>
+
+<%= render 'shared/errors' %>
+
 <%= yield %>
 
 </body>
