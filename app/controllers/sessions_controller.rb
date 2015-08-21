@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     # fail
     if user
       login!(user)
-      redirect_to user_url
+      redirect_to subs_url
     else
       flash[:notice] = "Invalid username or password."
       redirect_to new_session_url

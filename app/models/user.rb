@@ -6,6 +6,16 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
+  has_many :subs,
+    class_name: "Sub",
+    foreign_key: :moderator_id,
+    inverse_of: :moderator
+
+  has_many :posts,
+    class_name: "Post",
+    foreign_key: :author_id,
+    inverse_of: :author
+    
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end

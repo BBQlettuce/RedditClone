@@ -1,0 +1,10 @@
+<h1><%= @sub.title %></h1>
+<p><%= @sub.description %></p>
+
+<br>
+<%= link_to "Edit", edit_sub_url(@sub) if current_user == @sub.moderator %>
+<br>
+
+
+
+<%= link_to "Back to all subs", subs_url %>
