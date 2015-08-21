@@ -1,5 +1,5 @@
 <h1><%= @post.title %></h1>
-<h2>Posted at: <%= @post.sub.title %></h2>
+
 <h2>By: <%= @post.author.username %></h2>
 
 <p><%= @post.url %></p>
@@ -11,3 +11,13 @@
 <br>
 <%= button_to "Delete this post", post_url(@post), method: :delete %>
 <% end %>
+<br>
+
+Posted-to subs:
+<ul>
+  <% @subs.each do |sub| %>
+  <li>
+    <%= sub.title %>
+  </li>
+  <% end %>
+</ul>

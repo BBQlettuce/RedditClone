@@ -4,9 +4,12 @@
 <form action="<%= action %>" method="POST">
   <input type="hidden" name="_method" value="<%= method %>">
   <%= render_auth_token %>
-  <label for="post_sub_id">Subs</label>
-  <%= select "post", "sub_id", Sub.all.map { |sub| [sub.title, sub.id] }%>
-  <br>
+
+  <% Sub.all.each do |sub| %>
+    <input type="checkbox" name="post[sub_ids][<%= sub.id %>]"
+    <%= "checked" if @associated_subs.include?(sub) %>
+    ><%= sub.title %><br>
+  <% end %>
 
   <label for="title">Title</label>
   <input id="title" name="post[title]" type="text" value="<%= @post.title %>">
@@ -20,5 +23,6 @@
   <textarea id="content" name="post[content]"><%= @post.content %></textarea>
   <br>
 
+  <!-- <input type="hidden" name="post[hacker]" value="hacker"> -->
   <button>Submit</button>
 </form>
