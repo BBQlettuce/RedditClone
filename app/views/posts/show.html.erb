@@ -10,11 +10,11 @@
 <br>
 
 <h3>Comments:</h3>
-<!-- <ul> -->
-  <% comments = @post.comments.includes(:author).where(parent_comment_id: nil) %>
-  <%= render 'comments', comments: comments %>
-
-<!-- </ul> -->
+<ul>
+  <% @all_comments.each do |comment| %>
+  <%= render 'comment', comment: comment if comment.parent_comment_id.nil? %>
+  <% end %>
+</ul>
 <br>
 
 <% if @post.author == current_user %>
