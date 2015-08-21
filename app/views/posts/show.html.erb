@@ -11,8 +11,9 @@
 
 <h3>Comments:</h3>
 <ul>
-  <% @all_comments.each do |comment| %>
-  <%= render 'comment', comment: comment if comment.parent_comment_id.nil? %>
+  <% comments_hash = @post.comments_by_parent_id %>
+  <% comments_hash[nil].each do |comment| %>
+    <%= render 'comment', comment: comment, hash: comments_hash %>
   <% end %>
 </ul>
 <br>

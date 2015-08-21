@@ -2,11 +2,13 @@
   <a href="<%= comment_url(comment) %>">
   <%= comment.author.username %>: <%= comment.content %>
   </a>
-  <% child_comments = @all_comments.select { |c| c.parent_comment_id == comment.id } %>
+  <br>
+  Created at: <%= comment.created_at %>
+  <% child_comments = hash[comment.id] %>
   <% unless child_comments.empty? %>
     <ul>
       <% child_comments.each do |child| %>
-        <%= render 'comment', comment: child %>
+        <%= render 'comment', comment: child, hash: hash %>
       <% end %>
     </ul>
   <% end %>
