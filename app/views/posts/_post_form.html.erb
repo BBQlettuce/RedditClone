@@ -1,0 +1,24 @@
+<% action = (post.persisted? ? post_url(post) : posts_url) %>
+<% method = (post.persisted? ? :patch : :post) %>
+
+<form action="<%= action %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= render_auth_token %>
+  <label for="post_sub_id">Subs</label>
+  <%= select "post", "sub_id", Sub.all.map { |sub| [sub.title, sub.id] }%>
+  <br>
+
+  <label for="title">Title</label>
+  <input id="title" name="post[title]" type="text" value="<%= @post.title %>">
+  <br>
+
+  <label for="url">Link</label>
+  <input id="url" name="post[url]" type="text" value="<%= @post.url %>">
+  <br>
+
+  <label for="content">Content</label>
+  <textarea id="content" name="post[content]"><%= @post.content %></textarea>
+  <br>
+
+  <button>Submit</button>
+</form>

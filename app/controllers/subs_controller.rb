@@ -21,11 +21,11 @@ class SubsController < ApplicationController
   end
 
   def edit
-    @sub = Sub.find(params[:id])
+    # @sub = Sub.find(params[:id])
   end
 
   def update
-    @sub = Sub.find(params[:id])
+    # @sub = Sub.find(params[:id])
     if @sub.update(sub_params)
       redirect_to sub_url(@sub)
     else
@@ -44,8 +44,8 @@ class SubsController < ApplicationController
   end
 
   def require_moderator
-    sub = Sub.find(params[:id])
-    unless sub.moderator == current_user
+    @sub = Sub.find(params[:id])
+    unless @sub.moderator == current_user
       flash[:notice] = "You don't have permission for that sub."
       redirect_to subs_url
     end
