@@ -5,6 +5,22 @@
 <p><%= @post.url %></p>
 <p><%= @post.content %></p>
 
+<br>
+<%= link_to "Comment on this post", new_post_comment_url(@post) %>
+<br>
+
+<h3>Comments:</h3>
+<ul>
+  <% comments = @post.comments.includes(:author).where(parent_comment_id: nil) %>
+  <% comments.each do |comment| %>
+  <li>
+    <a href="<%= comment_url(comment) %>">
+    <%= comment.author.username %>: <%= comment.content %>
+    </a>
+  </li>
+  <% end %>
+</ul>
+<br>
 
 <% if @post.author == current_user %>
 <%= link_to "Edit this post", edit_post_url(@post) %>
@@ -21,3 +37,4 @@ Posted-to subs:
   </li>
   <% end %>
 </ul>
+<br>

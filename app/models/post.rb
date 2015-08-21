@@ -13,6 +13,9 @@ class Post < ActiveRecord::Base
     through: :post_subs,
     source: :sub
 
+  has_many :comments, inverse_of: :post
+
+
   private
   def has_at_least_one_sub
     return unless subs.empty?

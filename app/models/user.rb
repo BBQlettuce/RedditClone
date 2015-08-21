@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
     class_name: "Post",
     foreign_key: :author_id,
     inverse_of: :author
+
+  has_many :comments,
+    class_name: "Comment",
+    foreign_key: :author_id,
+    inverse_of: :author
     
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
